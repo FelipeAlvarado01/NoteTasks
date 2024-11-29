@@ -4,8 +4,8 @@ import CardTask from "./components/CardTask";
 function App() {
   return (
     <CardTask
-      taskName="My Fisrts Card"
-      notes="Realizar tarjetas en react"
+      cardTaskName="My Fisrts Card"
+      notes="Esto es un texto muy largo para una prueba de tamaño. Realizar tarjetas en react"
       index={1}
     />
   );
