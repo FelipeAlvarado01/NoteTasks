@@ -11,23 +11,23 @@ function CardTask({ taskName, notes, index }) {
 
   return (
     <>
-      <section className="my-cardTask">
-        <nav>
-          <div className="my-titleTask">
+      <section className="flex flex-col ...">
+        <nav className="flex flex-row">
+          <div className="basis-1/2">
             <h1>{taskName}</h1>
           </div>
-          <div className="my-settingsTask">
+          <div className="basis-1/4">
             <FontAwesomeIcon icon={faGear} />
           </div>
         </nav>
-        <section className="my-taskSection">
-          <div>
+        <section className="flex flex-row">
+          <div className="basis-1/4">
             <span>{index}.</span>
           </div>
-          <div>
+          <div className="basis-1/2">
             <span>{notes}</span>
           </div>
-          <div>
+          <div className="basis-1/4">
             <input
               type="checkbox"
               id="topping"
