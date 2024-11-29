@@ -3,11 +3,15 @@ import CardTask from "./components/CardTask";
 
 function App() {
   return (
-    <CardTask
-      cardTaskName="My Fisrts Card"
-      notes="Esto es un texto muy largo para una prueba de tamaño. Realizar tarjetas en react"
-      index={1}
-    />
+    <>
+      <section className="flex w-full h-screen justify-center items-center">
+        <CardTask
+          cardTaskName="My Fisrts Card"
+          notes="Realizar tarjetas en react"
+          index={1}
+        />
+      </section>
+    </>
   );
 }
 
