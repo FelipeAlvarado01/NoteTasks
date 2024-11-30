@@ -49,7 +49,12 @@ function CardTask({ cardTaskName }) {
             ))}
           </ul>
           {/* Botón para adicionar tareas */}
-          <input onChange={inputValue} />
+          <input
+            type="text"
+            placeholder="Añade una nueva tarea a tu lista"
+            onChange={inputValue}
+            required
+          />
 
           <button onClick={addTask}>
             <div className="cursor-pointer bg-sky-500 rounded-full shadow-lg py-2 px-3">
