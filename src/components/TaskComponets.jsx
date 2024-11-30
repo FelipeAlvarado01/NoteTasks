@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function TaskComponents({ notes, index }) {
+function TaskComponents({ index, notes }) {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = (event) => {
@@ -10,7 +10,7 @@ function TaskComponents({ notes, index }) {
     <>
       <div className="flex flex-row items-stretch text-lg">
         <div className="flex-none w-5 ">
-          <span>{index}.</span>
+          <span>{index}. </span>
         </div>
         <div className="grow">
           <span>{notes}</span>

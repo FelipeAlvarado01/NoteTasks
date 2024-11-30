@@ -1,7 +1,22 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear, faPlus } from "@fortawesome/free-solid-svg-icons"; // Importa el icono necesario
+import { useState } from "react";
+
 import TaskComponents from "./TaskComponets";
-function CardTask({ cardTaskName, notes, index }) {
+
+let nextId = 1;
+function CardTask({ cardTaskName }) {
+  const [noteTask, setNoteTask] = useState("");
+  const [tasks, setTasks] = useState([]);
+
+  const inputValue = (e) => {
+    setNoteTask(e.target.value);
+  };
+
+  const addTask = () => {
+    setTasks([...tasks, { id: nextId++, noteTask: noteTask }]);
+  };
+
   return (
     <>
       <figure className=" bg-sky-400 w-96 h-96 px-1 shadow-lg rounded-xl ">
@@ -24,20 +39,23 @@ function CardTask({ cardTaskName, notes, index }) {
 
         {/* Detalles de la tarea */}
         <main className="content-between h-5/6 py-3 px-2">
-          <section className="h-5/6">
-            <TaskComponents notes={notes} index={index} />
-            <TaskComponents notes={notes} index={index} />
-          </section>
+          <ul className="overflow-y-auto h-5/6">
+            {tasks.map((task) => (
+              <TaskComponents
+                key={task.id}
+                index={task.id}
+                notes={task.noteTask}
+              />
+            ))}
+          </ul>
           {/* Botón para adicionar tareas */}
-          <div className="flex justify-center">
-            <button
-              type="button"
-              aria-label="Agregar tarea"
-              className="cursor-pointer bg-sky-500 rounded-full shadow-lg py-2 px-3"
-            >
+          <input onChange={inputValue} />
+
+          <button onClick={addTask}>
+            <div className="cursor-pointer bg-sky-500 rounded-full shadow-lg py-2 px-3">
               <FontAwesomeIcon icon={faPlus} />
-            </button>
-          </div>
+            </div>
+          </button>
         </main>
       </figure>
     </>
