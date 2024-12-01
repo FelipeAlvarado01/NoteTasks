@@ -39,7 +39,7 @@ function CardTask({ cardTaskName }) {
 
         {/* Detalles de la tarea */}
         <main className="content-between h-5/6 py-3 px-2">
-          <ul className="overflow-y-auto h-5/6">
+          <ul className="flex flex-col overflow-y-auto h-5/6 gap-y-2">
             {tasks.map((task) => (
               <TaskComponents
                 key={task.id}
