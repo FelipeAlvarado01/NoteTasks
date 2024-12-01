@@ -38,7 +38,7 @@ function CardTask({ cardTaskName }) {
         </header>
 
         {/* Detalles de la tarea */}
-        <main className="content-between h-5/6 py-3 px-2">
+        <main className="flex flex-col content-between h-5/6 py-3 px-2 gap-2 	">
           <ul className="flex flex-col overflow-y-auto h-5/6 gap-y-2">
             {tasks.map((task) => (
               <TaskComponents
@@ -49,18 +49,20 @@ function CardTask({ cardTaskName }) {
             ))}
           </ul>
           {/* Botón para adicionar tareas */}
-          <input
+          <textarea
             type="text"
             placeholder="Añade una nueva tarea a tu lista"
             onChange={inputValue}
             required
+            className="block bg-sky-200 white	rounded p-1 text-xs text-zinc-800 placeholder-gray-500	focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:text-sm"
           />
 
-          <button onClick={addTask}>
-            <div className="cursor-pointer bg-sky-500 rounded-full shadow-lg py-2 px-3">
-              <FontAwesomeIcon icon={faPlus} />
-            </div>
-          </button>
+          <div onClick={addTask} className="flex flex-row justify-end">
+            <FontAwesomeIcon
+              icon={faPlus}
+              className="cursor-pointer justify-end bg-sky-500 rounded-full shadow-lg p-4  max-w-10"
+            />
+          </div>
         </main>
       </figure>
     </>
