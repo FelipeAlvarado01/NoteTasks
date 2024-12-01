@@ -48,16 +48,10 @@ function CardTask({ cardTaskName }) {
               />
             ))}
           </ul>
+          <TextareaTasks inputValue={inputValue} />
           {/* Botón para adicionar tareas */}
-          <textarea
-            type="text"
-            placeholder="Añade una nueva tarea a tu lista"
-            onChange={inputValue}
-            required
-            className="block bg-sky-200 white	rounded p-1 text-xs text-zinc-800 placeholder-gray-500	focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:text-sm"
-          />
 
-          <div onClick={addTask} className="flex flex-row justify-end">
+          <div onClick={addTask} className="flex flex-roñw justify-end">
             <FontAwesomeIcon
               icon={faPlus}
               className="cursor-pointer justify-end bg-sky-500 rounded-full shadow-lg p-4  max-w-10"
@@ -69,4 +63,15 @@ function CardTask({ cardTaskName }) {
   );
 }
 
+function TextareaTasks(inputValue) {
+  return (
+    <textarea
+      type="text"
+      placeholder="Añade una nueva tarea a tu lista"
+      onChange={inputValue}
+      required
+      className="block bg-sky-200 white	rounded p-1 text-xs text-zinc-800 placeholder-gray-500	focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:text-sm"
+    />
+  );
+}
 export default CardTask;

@@ -17,7 +17,7 @@ function TaskComponents({ index, notes }) {
         <div className="flex-none w-5 ">
           <span>{index}. </span>
         </div>
-        <div className=" ">
+        <div className="grow ">
           <p className="break-all "> {notes}</p>
         </div>
         <div className="flex-none ">
