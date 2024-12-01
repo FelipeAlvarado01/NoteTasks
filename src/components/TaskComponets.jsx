@@ -10,15 +10,15 @@ function TaskComponents({ index, notes }) {
   };
   return (
     <>
-      <div className="flex flex-row items-stretch text-lg gap-x-2">
+      <div className="flex flex-row items-stretch text-lg gap-x-2 max-w-90">
         <div className="content-center cursor-pointer w-3 bg-sky-500 px-1 py-1 rounded shadow-inner ">
           <FontAwesomeIcon icon={faEllipsisVertical} />
         </div>
         <div className="flex-none w-5 ">
           <span>{index}. </span>
         </div>
-        <div className="grow max-w-50">
-          <span>{notes}</span>
+        <div className="grow ">
+          <p className="break-all"> {notes}</p>
         </div>
         <div className="flex-none w-14 ">
           <input
