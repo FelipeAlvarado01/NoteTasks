@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-      <main className="flex flex-row w-full h-screen justify-evenly items-center">
+      <main className="flex flex-row w-full h-screen justify-center gap-1 items-center">
         <section className="flex gap-2 relative">
           {myCards.map((card) => (
             <CardTask key={card.id} />
