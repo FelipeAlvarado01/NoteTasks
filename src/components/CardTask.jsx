@@ -53,7 +53,7 @@ function CardTask() {
 
   return (
     <>
-      <figure className=" bg-sky-400 min-w-96 h-96 px-1 shadow-lg rounded-xl ">
+      <figure className=" bg-sky-400 min-w-96 h-96 px-1 shadow-lg rounded-xl  ">
         {/* Encabezado de la tarea */}
 
         <header className="flex flex-wrap w-full items-center justify-stretch border-b-2 py-1">
@@ -68,7 +68,7 @@ function CardTask() {
                   <input
                     type="text"
                     onChange={addTitleCard}
-                    placeholder="Ingrese el título del bloc de tareas."
+                    placeholder="Agrega un título a tu bloc de tareas."
                     className="w-full bg-sky-200 white	rounded text-base text-zinc-800 placeholder-gray-500	focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   ></input>
                   <button
