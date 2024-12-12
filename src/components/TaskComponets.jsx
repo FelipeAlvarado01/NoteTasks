@@ -4,14 +4,19 @@ import { faEllipsisVertical } from "@fortawesome/duotone-light-svg-icons";
 
 function TaskComponents({ index, notes }) {
   const [isChecked, setIsChecked] = useState(false);
+  const [isEditableTask, setIsEditableTask] = useState(false);
   const [isEditTask, setIsEditTask] = useState(false);
+  const [taskNote, setTaskNote] = useState(notes);
 
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked); // Actualiza el estado con el valor del checkbox
   };
 
+  const editableTask = () => {
+    setIsEditableTask(!isEditableTask);
+  };
+
   const editTask = () => {
-    console.log("editando tarea");
     setIsEditTask(!isEditTask);
   };
 
@@ -21,19 +26,19 @@ function TaskComponents({ index, notes }) {
         <section>
           <div
             className="content-center cursor-pointer w-3 bg-sky-500 px-1 py-1 rounded shadow-inner "
-            onClick={editTask}
+            onClick={editableTask}
           >
             <FontAwesomeIcon icon={faEllipsisVertical} />
           </div>
           <div
             className={` bg-white	px-1 my-1 text-sm rounded absolute shadow-lg transform transition-all duration-300 ease-in-out ${
-              isEditTask
+              isEditableTask
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 -translate-y-10 pointer-events-none"
             }`}
           >
             <ul className="cursor-pointer ">
-              <li>Editar</li>
+              <li onClick={editTask}>Editar</li>
               <li>Eliminar</li>
             </ul>
           </div>
@@ -43,7 +48,16 @@ function TaskComponents({ index, notes }) {
           <span>{index}. </span>
         </div>
         <div className="grow ">
-          <p className="break-all "> {notes}</p>
+          {isEditTask ? (
+            <textarea
+              type="text"
+              value={taskNote}
+              placeholder="Añade una nueva tarea a tu lista"
+              className="w-full h-70 bg-sky-200 white	rounded p-1 text-xs text-zinc-800 placeholder-gray-500	focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 "
+            />
+          ) : (
+            <p className="break-all "> {taskNote}</p>
+          )}
         </div>
         <div className="flex-none ">
           <input

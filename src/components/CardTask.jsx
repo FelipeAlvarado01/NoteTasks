@@ -53,7 +53,7 @@ function CardTask() {
 
   return (
     <>
-      <figure className=" bg-sky-400 min-w-96 h-96 px-1 shadow-lg rounded-xl  ">
+      <figure className=" bg-sky-400 min-w-96 max-w-96 h-96 px-1 shadow-lg rounded-xl  ">
         {/* Encabezado de la tarea */}
 
         <header className="flex flex-wrap w-full items-center justify-stretch border-b-2 py-1">
