@@ -69,7 +69,7 @@ function CardTask() {
                     type="text"
                     onChange={addTitleCard}
                     placeholder="Agrega un título a tu bloc de tareas."
-                    className="w-full bg-sky-200 white	rounded text-base text-zinc-800 placeholder-gray-500	focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full bg-sky-200 white rounded text-base text-zinc-800 placeholder-gray-500	focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   ></input>
                   <button
                     onClick={showInputAddTitle}

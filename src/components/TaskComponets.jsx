@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEllipsisVertical } from "@fortawesome/duotone-light-svg-icons";
+import {
+  faEllipsisVertical,
+  faCheck,
+  faXmark,
+} from "@fortawesome/duotone-light-svg-icons";
 
 function TaskComponents({ index, notes }) {
   const [isChecked, setIsChecked] = useState(false);
@@ -22,7 +26,7 @@ function TaskComponents({ index, notes }) {
 
   return (
     <>
-      <div className="flex flex-row items-baseline text-base gap-x-2 max-w-90 ">
+      <div className="flex flex-row align-middle text-base gap-x-2 max-w-90 ">
         <section>
           <div
             className="content-center cursor-pointer w-3 bg-sky-500 px-1 py-1 rounded shadow-inner "
@@ -49,12 +53,24 @@ function TaskComponents({ index, notes }) {
         </div>
         <div className="grow ">
           {isEditTask ? (
-            <textarea
-              type="text"
-              value={taskNote}
-              placeholder="Añade una nueva tarea a tu lista"
-              className="w-full h-70 bg-sky-200 white	rounded p-1 text-xs text-zinc-800 placeholder-gray-500	focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 "
-            />
+            <>
+              <div className="bg-sky-500 flex flex-row rounded">
+                <textarea
+                  type="text"
+                  defaultValue={taskNote}
+                  placeholder="Añade una nueva tarea a tu lista"
+                  className="w-full bg-sky-500 white rounded p-1 text-xs text-zinc-800 placeholder-gray-500	focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 "
+                />
+                <div className="m-2">
+                  <button className="flex justify-center bg-lime-600 rounded-full shadow-lg p-1 ">
+                    <FontAwesomeIcon icon={faCheck} />
+                  </button>
+                  <button className="flex justify-center bg-red-400	 rounded-full shadow-lg p-1 ">
+                    <FontAwesomeIcon icon={faXmark} />
+                  </button>
+                </div>
+              </div>
+            </>
           ) : (
             <p className="break-all "> {taskNote}</p>
           )}
