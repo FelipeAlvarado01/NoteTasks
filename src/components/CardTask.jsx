@@ -23,8 +23,12 @@ function CardTask() {
     /*Se agrega el titulo al la carta */
   }
   const showInputAddTitle = () => {
-    setAddTitle(!addTitle);
-    console.log("titulo: " + titleCard);
+    if (titleCard === "") {
+      alert("Ingresa un nombre valido para tu tarjeta.");
+    } else {
+      setAddTitle(!addTitle);
+      console.log("titulo: " + titleCard);
+    }
   };
   const addTitleCard = (e) => {
     setTitleCard(e.target.value);
@@ -48,7 +52,15 @@ function CardTask() {
     /* Se guarda inserta la nueva tarea en el array nombrado como "tasks" para posteriormente ser renderizado*/
   }
   const addTask = () => {
-    setTasks([...tasks, { id: nextId++, noteTask: noteTask }]);
+    if (noteTask === "") {
+      alert("Por favor ingresa una tarea.");
+    } else {
+      setTasks([...tasks, { id: nextId++, noteTask: noteTask }]);
+      setNoteTask("");
+      {
+        /*Limpia el text area */
+      }
+    }
   };
 
   return (
@@ -72,6 +84,7 @@ function CardTask() {
                     className="w-full bg-sky-200 white rounded text-base text-zinc-800 placeholder-gray-500	focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                   ></input>
                   <button
+                    type="submit"
                     onClick={showInputAddTitle}
                     className="flex justify-center bg-lime-600 rounded-full shadow-lg p-1 "
                   >
@@ -107,8 +120,8 @@ function CardTask() {
               <textarea
                 type="text"
                 placeholder="Añade una nueva tarea a tu lista"
+                value={noteTask}
                 onChange={inputValue}
-                required
                 className="w-full h-70 bg-sky-200 white	rounded p-1 text-xs text-zinc-800 placeholder-gray-500	focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 "
               />
             ) : (

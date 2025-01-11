@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faEllipsisVertical,
@@ -11,6 +11,7 @@ function TaskComponents({ index, notes }) {
   const [isEditableTask, setIsEditableTask] = useState(false);
   const [isEditTask, setIsEditTask] = useState(false);
   const [taskNote, setTaskNote] = useState(notes);
+  const modalRef = useRef(null);
 
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked); // Actualiza el estado con el valor del checkbox
@@ -24,30 +25,31 @@ function TaskComponents({ index, notes }) {
     setIsEditTask(!isEditTask);
   };
 
+  {
+    /*Funciones que cierran la venta de editar y borrar cuando se preciona por fuera del contenedor */
+  }
+  const handleOutsideClick = (event) => {
+    // Comprueba si el clic ocurrió fuera del modal
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
+      setIsEditableTask(false);
+    } else {
+      console.log("click dentro del modal");
+    }
+  };
+
+  useEffect(() => {
+    if (isEditableTask) {
+      document.addEventListener("mousedown", handleOutsideClick);
+    }
+    return () => {
+      // Limpia el evento al cerrar el modal
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, [isEditableTask]);
+
   return (
     <>
       <div className="flex flex-row align-middle text-base gap-x-2 max-w-90 ">
-        <section>
-          <div
-            className="content-center cursor-pointer w-3 bg-sky-500 px-1 py-1 rounded shadow-inner "
-            onClick={editableTask}
-          >
-            <FontAwesomeIcon icon={faEllipsisVertical} />
-          </div>
-          <div
-            className={` bg-white	px-1 my-1 text-sm rounded absolute shadow-lg transform transition-all duration-300 ease-in-out ${
-              isEditableTask
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 -translate-y-10 pointer-events-none"
-            }`}
-          >
-            <ul className="cursor-pointer ">
-              <li onClick={editTask}>Editar</li>
-              <li>Eliminar</li>
-            </ul>
-          </div>
-        </section>
-
         <div className="flex-none w-5 ">
           <span>{index}. </span>
         </div>
@@ -83,6 +85,28 @@ function TaskComponents({ index, notes }) {
             className="cursor-pointer w-4 h-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500 focus:ring-2 checked:bg-blue-500 checked:border-blue-500"
           />
         </div>
+
+        <section>
+          <div
+            className="content-center cursor-pointer w-3 bg-sky-500 px-1 py-1 rounded shadow-inner "
+            onClick={editableTask}
+          >
+            <FontAwesomeIcon icon={faEllipsisVertical} />
+          </div>
+          <div
+            ref={modalRef}
+            className={` bg-white	px-1 my-1 text-sm rounded absolute shadow-lg transform transition-all duration-300 ease-in-out ${
+              isEditableTask
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 -translate-y-10 pointer-events-none"
+            }`}
+          >
+            <ul className="cursor-pointer ">
+              <li onClick={editTask}>Editar</li>
+              <li>Eliminar</li>
+            </ul>
+          </div>
+        </section>
       </div>
     </>
   );
