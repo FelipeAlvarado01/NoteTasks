@@ -11,6 +11,7 @@ function TaskComponents({ index, notes }) {
   const [isEditableTask, setIsEditableTask] = useState(false);
   const [isEditTask, setIsEditTask] = useState(false);
   const [taskNote, setTaskNote] = useState(notes);
+  const [isDeleteTask, setIsDeleteTask] = useState(false);
   const modalRef = useRef(null);
 
   const handleCheckboxChange = (event) => {
@@ -19,11 +20,25 @@ function TaskComponents({ index, notes }) {
 
   const editableTask = () => {
     setIsEditableTask(!isEditableTask);
+    if (isEditableTask) {
+      setIsDeleteTask(taskNote);
+    }
   };
 
   const editTask = () => {
     setIsEditTask(!isEditTask);
   };
+
+  const newTaskNote = (e) => {
+    setTaskNote(e.target.value);
+  };
+
+  const cancelEditTask = () => {
+    setTaskNote(isDeleteTask);
+    setIsEditTask(false);
+  };
+
+  const deleteTask = () => {};
 
   {
     /*Funciones que cierran la venta de editar y borrar cuando se preciona por fuera del contenedor */
@@ -31,6 +46,7 @@ function TaskComponents({ index, notes }) {
   const handleOutsideClick = (event) => {
     // Comprueba si el clic ocurrió fuera del modal
     if (modalRef.current && !modalRef.current.contains(event.target)) {
+      console.log(event.target);
       setIsEditableTask(false);
     } else {
       console.log("click dentro del modal");
@@ -60,14 +76,21 @@ function TaskComponents({ index, notes }) {
                 <textarea
                   type="text"
                   defaultValue={taskNote}
+                  onChange={newTaskNote}
                   placeholder="Añade una nueva tarea a tu lista"
                   className="w-full bg-sky-500 white rounded p-1 text-xs text-zinc-800 placeholder-gray-500	focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 "
                 />
-                <div className="m-2">
-                  <button className="flex justify-center bg-lime-600 rounded-full shadow-lg p-1 ">
+                <div className="m-2 gap-1">
+                  <button
+                    onClick={editTask}
+                    className="flex justify-center bg-lime-600 rounded-full shadow-lg p-1 "
+                  >
                     <FontAwesomeIcon icon={faCheck} />
                   </button>
-                  <button className="flex justify-center bg-red-400	 rounded-full shadow-lg p-1 ">
+                  <button
+                    onClick={cancelEditTask}
+                    className="flex justify-center bg-red-400	 rounded-full shadow-lg p-1 "
+                  >
                     <FontAwesomeIcon icon={faXmark} />
                   </button>
                 </div>
@@ -94,14 +117,13 @@ function TaskComponents({ index, notes }) {
             <FontAwesomeIcon icon={faEllipsisVertical} />
           </div>
           <div
-            ref={modalRef}
             className={` bg-white	px-1 my-1 text-sm rounded absolute shadow-lg transform transition-all duration-300 ease-in-out ${
               isEditableTask
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 -translate-y-10 pointer-events-none"
             }`}
           >
-            <ul className="cursor-pointer ">
+            <ul ref={modalRef} className="cursor-pointer " id="editInput">
               <li onClick={editTask}>Editar</li>
               <li>Eliminar</li>
             </ul>
