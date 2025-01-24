@@ -65,7 +65,7 @@ function TaskComponents({ index, notes }) {
 
   return (
     <>
-      <div className="flex flex-row align-middle text-base gap-x-2 max-w-90 ">
+      <div className="flex flex-row  text-base gap-x-2 max-w-90 ">
         <div className="flex-none w-5 ">
           <span>{index}. </span>
         </div>
