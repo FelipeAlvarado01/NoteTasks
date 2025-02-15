@@ -38,7 +38,7 @@ function TaskComponents({ index, notes }) {
     setIsEditTask(false);
   };
 
-  const deleteTask = () => {};
+  //const deleteTask = () => {};
 
   {
     /*Funciones que cierran la venta de editar y borrar cuando se preciona por fuera del contenedor */
