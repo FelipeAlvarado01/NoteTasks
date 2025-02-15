@@ -16,19 +16,6 @@ function App() {
   return (
     <>
       <main className="flex flex-row w-full h-screen justify-center gap-1 items-center">
-        <section className="flex gap-2 relative top-0">
-          {myCards.map((card, index) => (
-            <>
-              <div
-                className="absolute"
-                style={{ right: `${-index * 10}px`, top: `${index * 10}px` }}
-              >
-                <CardTask key={card.id} />
-              </div>
-            </>
-          ))}
-        </section>
-
         <section>
           <button
             onClick={addNewCardTask}
@@ -36,6 +23,19 @@ function App() {
           >
             <FontAwesomeIcon icon={faPlus} />
           </button>
+        </section>
+
+        <section className="flex gap-2 relative top-0 w-full h-full">
+          {myCards.map((card, index) => (
+            <>
+              <div
+                className="absolute justify-center"
+                style={{ right: `${-index * 10}px`, top: `${index * 10}px` }}
+              >
+                <CardTask key={card.id} />
+              </div>
+            </>
+          ))}
         </section>
       </main>
     </>
